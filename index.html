@@ -13,6 +13,16 @@
 	<link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="16x16" />
 	<link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="128x128" />
 </head>
+
+  <!-- add Pulp Fiction font  --> 
+  <style>
+    @font-face {
+      font-family: 'PulpFiction';
+      src: url('fonts/ufonts.com_aachen-bold-opentype.otf') format('opentype');
+    }
+  </style>
+
+
 <body>
   <ul class="tabs">  <!-- create the tabs that can be selected --> 
 	  <li data-tab-target="#home" class="active tab">Home</li>
@@ -26,22 +36,35 @@
 <!-- the homepage -->  
     <div id="home" data-tab-content class="active">
       <h1>Home</h1>
-      <p>This is the home</p>
+      <p>Welcome to Codelodex! This site is a work in progress, please check back soon.</p>
     </div>
+
 <!-- the R rolodex page --> 
     <div id="r" data-tab-content>
       <h1>R</h1>
-      <p>This is the R</p>
+      <p>Code for R</p>
     </div>
+
 <!-- the Stata rolodex page --> 
     <div id="stata" data-tab-content>
       <h1>Stata</h1>
-      <p>Some information on Stata</p>
+      <p>Code for Stata</p>
     </div>
+
 <!-- the About page --> 	  
-<div id="about" data-tab-content style="background-color: black;">
-	<img  class="img-responsive hidden-xs hidden-sm" style="margin: 0 auto;" alt="About Codelodex" src="img/codelodex_def.png">
-    </div>
+<div id="about" data-tab-content style="background-color: black; position: relative; min-height: 350px;">
+  <h1 style="font-family: 'PulpFiction'; font-size: 50pt; color: #E00000; position: absolute; left: 0; top: 0px; margin-left: 75px; margin-right: 20px;">Codelodex</h1>
+  <h1 style="font-family: 'PulpFiction'; font-size: 50pt; color: #FFD700; position: absolute; left: 0; top: -4px; margin-left: 75px; margin-right: 20px;">Codelodex</h1>
+  
+  <p style="font-family: 'Times New Roman'; color: #FFFFFF; position: absolute; left: 0; top: 125px; margin-left: 75px; margin-right: 20px;">
+    <b>code</b> /kōd/ <i>n.</i> <b>1.</b> a system of words, letters, figures, or other symbols substituted for other words, letters, etc., especially for the purposes of secrecy.<br>
+    2.</b> program instructions.
+  </p>
+
+  <p style="font-family: 'Times New Roman', Times, serif; color: #FFFFFF; position: absolute; left: 0; top: 195px; margin-left: 75px; margin-right: 20px;">
+    <b>rolodex</b> /ˈrōləˌdeks/ <i>n.</i> <b>1.</b> a desktop card index used to record names, addresses, and telephone numbers, in the form of a rotating spindle or a small tray to which removable cards are attached.
+  </p>
+</div>
 	  
 <!-- COMING SOON the Python rolodex page	  
     <div id="python" data-tab-content>
