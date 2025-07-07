@@ -1,82 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-<meta charset = "UTF-8">
-<meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
-<script src = "script.js" defer></script>
-<link href = "styles.css" rel = "stylesheet">
-<title>Codelodex</title> <!-- set the title for the "new tab" header -->
-<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "196x196" />
-<!-- set the image for the "new tab" header -->
-<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "96x96" />
-<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "32x32" />
-<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "16x16" />
-<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "128x128" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <script src="sidebar.js" defer></script>
+  <link href="sidebar.css" rel="stylesheet">
+  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <title>Codelodex</title>
+  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="196x196" />
+  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="96x96" />
+  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="16x16" />
+  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="128x128" />
 </head>
-
-<!-- add Pulp Fiction font  -->
-<style>
-@font-face {font-family: 'PulpFiction'; src: url('fonts/ufonts.com_aachen-bold-opentype.otf') format('opentype');}
-</style>
-
-
 <body>
-<ul class = "tabs"> <!-- create the tabs that can be selected -->
-<li data-tab-target = "#home" class="active tab">Home</li>
-<li data-tab-target = "#r" class = "tab">R</li>
-<li data-tab-target = "#stata" class = "tab">Stata</li>
-<li data-tab-target = "#about" class = "tab">About</li>
-<!-- COMING SOON <li data-tab-target="#python" class="tab">Python</li> COMING SOON -->
-</ul>
 
-<div class="tab-content">
-<!-- the homepage -->
-<div id = "home" data-tab-content class = "active">
-<h1>Home</h1>
-<p>Welcome to Codelodex! This site is a work in progress, please check back soon.</p>
-</div>
+  <button id="sidebar-toggle" aria-label="Toggle Sidebar">
+    <i class='bx bx-menu'></i>
+  </button>
 
-<!-- the R rolodex page -->
-<div id = "r" data-tab-content>
-<h1>R</h1>
+  <nav class="sidebar close" id="sidebar">
+    <ul class="nav-links">
+      <li>
+        <a href="#">
+          <span class="link-name">Home</span>
+        </a>
+      </li>
+      <li class="has-submenu">
+        <a href="#">
+          <span class="link-name">R</span>
+        </a>
+        <i class="bx bxs-chevron-down submenu-toggle"></i>
+        <ul class="sub-menu">
+          <li><a href="#">Freq</a></li>
+          <li><a href="#">RegEx</a></li>
+          <li><a href="#">Plots</a></li>
+        </ul>
+      </li>
+      <li class="has-submenu">
+        <a href="#">
+          <span class="link-name">Stata</span>
+        </a>
+        <i class="bx bxs-chevron-down submenu-toggle"></i>
+        <ul class="sub-menu">
+          <li><a href="#">Do-Files</a></li>
+          <li><a href="#">Graphs</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
 
-Code Ex 1
-<div class = "code-chunk">
-df = read.csv("filepath")<br>
-mod = lm(dv ~ iv1 + iv2, data = df)
-</div>
+  <main class="main-content">
+    <!-- Main content goes here -->
+  </main>
 
-Code Ex 2
-<div class = "code-chunk">
-df = read.csv("filepath")<br>
-mod = lm(dv ~ iv1 + iv2, data = df)
-</div>
-
-</div>
-
-<!-- the Stata rolodex page -->
-<div id = "stata" data-tab-content>
-<h1>Stata</h1>
-Code for stata
-</div>
-
-<!-- the About page -->
-<div id = "about" data-tab-content style = "background-color: black; position: relative; min-height: 750px;">
-<center>
-<a href = "https://codelodex.github.io" target = "_blank"><img src = "img/cdex-def_blank.png" alt = "codelodex def"
-width="80%"></a> <br>
-<center>
-</div>
-
-<!-- COMING SOON the Python rolodex page	  
-<div id = "python" data-tab-content>
-<h1>Python</h1>
-<p>Let me tell you about Python</p>
-</div> COMING SOON -->
-
-</div>
 </body>
-
 </html>
