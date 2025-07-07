@@ -15,7 +15,8 @@ body {
   display: flex;
   justify-content: space-around;
   list-style-type: none;
-  margin: 0;
+  margin-left: 150px;
+  margin-right: 150px;
   padding: 0;
   border-bottom: 1px solid black;
 }
@@ -34,6 +35,16 @@ body {
 }
 
 .tab-content {
-  margin-left: 50px;
-  margin-right: 50px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.code-chunk {
+  background-color: #f7f9fa; /* light grey background */
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: monospace;
+  color: black;
+  overflow-x: auto;
+  margin-bottom: 1rem;
 }
