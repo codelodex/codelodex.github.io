@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+
+<meta charset = "UTF-8">
+<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0, user-scalable=yes">
+<script src = "../script.js" defer></script>
+<link href = "../styles.css" rel = "stylesheet"> 
+<link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+<title>Codelodex</title> <!-- set the title for the "new tab" header -->
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "196x196" />
+<!-- set the image for the "new tab" header -->
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "96x96" />
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "32x32" />
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "16x16" />
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "128x128" />
+
+</head>
+
+
+
+<body>
+
+<div id="sidebar"></div>
+<script>
+  fetch('../sidebar.html')
+    .then(res => res.text())
+    .then(html => {
+      document.getElementById('sidebar').innerHTML = html;
+      // ✅ Now that the sidebar HTML is here, attach the dropdown behavior:
+      let dropdown = document.getElementsByClassName("dropdown-btn");
+      for (let i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          let dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+          } else {
+            dropdownContent.style.display = "block";
+          }
+        });
+      }
+    });
+</script>
+<link rel="stylesheet" href="/css/styles.css">
+
+
+<div>
+
+Example Code 1
+<div class = "code-chunk">
+df = read.csv("filepath")<br>
+mod = lm(dv ~ iv1 + iv2, data = df)
+</div>
+
+Example Code 2
+<div class = "code-chunk">
+df = read.csv("filepath")<br>
+mod = lm(dv ~ iv1 + iv2, data = df)
+
+</div>
+
+
+</body>

@@ -1,59 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <script src="sidebar.js" defer></script>
-  <link href="sidebar.css" rel="stylesheet">
-  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
-  <title>Codelodex</title>
-  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="196x196" />
-  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="96x96" />
-  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="32x32" />
-  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="16x16" />
-  <link rel="icon" type="image/png" href="/img/codelodex_logo.png" sizes="128x128" />
+
+
+<meta charset = "UTF-8">
+<meta http-equiv = "X-UA-Compatible" content = "ie=edge">
+<meta name = "viewport" content = "width=device-width, initial-scale=1.0, user-scalable=yes">
+<script src = "script.js" defer></script>
+<link href = "styles.css" rel = "stylesheet">
+<link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+<title>Codelodex</title> <!-- set the title for the "new tab" header -->
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "196x196" />
+<!-- set the image for the "new tab" header -->
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "96x96" />
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "32x32" />
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "16x16" />
+<link rel = "icon" type = "image/png" href = "/img/codelodex_logo.png" sizes = "128x128" />
+
+
 </head>
+
+
 <body>
 
-  <button id="sidebar-toggle" aria-label="Toggle Sidebar">
-    <i class='bx bx-menu'></i>
-  </button>
 
-  <nav class="sidebar close" id="sidebar">
-    <ul class="nav-links">
-      <li>
-        <a href="#">
-          <span class="link-name">Home</span>
-        </a>
-      </li>
-      <li class="has-submenu">
-        <a href="#">
-          <span class="link-name">R</span>
-        </a>
-        <i class="bx bxs-chevron-down submenu-toggle"></i>
-        <ul class="sub-menu">
-          <li><a href="#">Freq</a></li>
-          <li><a href="#">RegEx</a></li>
-          <li><a href="#">Plots</a></li>
-        </ul>
-      </li>
-      <li class="has-submenu">
-        <a href="#">
-          <span class="link-name">Stata</span>
-        </a>
-        <i class="bx bxs-chevron-down submenu-toggle"></i>
-        <ul class="sub-menu">
-          <li><a href="#">Do-Files</a></li>
-          <li><a href="#">Graphs</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+<div class = "sidenav"> <!-- BEGIN side nav -->
+<a href = "index.html">Home</a>
+<a href = "/page_about/index_about.html">About</a>
 
-  <main class="main-content">
-    <!-- Main content goes here -->
-  </main>
+<button class = "dropdown-btn">R <!-- R tab -->
+<i class = 'bxr  bx-chevron-down' ></i> 
+</button>
+<div class = "dropdown-container">
+<a href = "/page_r/index_r.html">Example code</a>
+<a href = "#">Link 2</a>
+<a href = "#">Link 3</a>
+</div>
+
+
+<button class="dropdown-btn">Stata <!-- Stata tab -->
+<i class='bxr  bx-chevron-down' ></i> 
+</button>
+<div class="dropdown-container">
+<a href="#">Link 1</a>
+<a href="#">Link 2</a>
+<a href="#">Link 3</a>
+</div>
+</div> <!-- END side nav -->
+
 
 </body>
+
+
+
+
 </html>
