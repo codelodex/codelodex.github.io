@@ -3,18 +3,30 @@ project:
   output-dir: docs
 
 website:
-  title: "codelodex.github.io"
+  title: Codelodex
   navbar:
-    left:
+    search: false
+    right:
       - href: index.qmd
-        text: Home
-      - about.qmd
+      - href: about.qmd
+      - href: references.qmd
+  sidebar:
+    style: "floating"
+    collapse-level: 1
+    contents:
+      - href: index.qmd 
+      - href: gettingstarted.qmd
+      - section: "R"
+        contents:
+          - href: r_1_dmc.qmd # Data Managment & Cleaning 
+          - href: r_2_regex.qmd
+      - section: "Stata"
+        contents:
+          - href: stata_1_dmc.qmd # Data Managment & Cleaning 
+
 
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
-
-

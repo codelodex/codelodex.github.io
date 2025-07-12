@@ -1,1 +1,4 @@
 /* css styles */
+
+/* make text surrounded by ` ` black */
+p code {color: black !important;}

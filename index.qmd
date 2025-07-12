@@ -1,5 +1,5 @@
 ---
-title: "codelodex.github.io"
+title: "Home"
 ---
 
 This is a Quarto website.
@@ -7,5 +7,7 @@ This is a Quarto website.
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
 ```{r}
-1 + 1
+owh = "OWHolmes"
+ldb = "LDBrandeis"
+print(owh)
 ```

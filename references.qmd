@@ -1,0 +1,11 @@
+---
+title: "References"
+---
+
+This site was created in R using Quarto, and open-source software supported by Posit. The theme and style of the website were come from Quarto's pre-existing themes using their publicly available code that can be found at [https://quarto.org](https://quarto.org).
+
+The inspiration for this site was Vincent Arel-Bundock's wonderful documentation website for the `marginaleffects` package, which can be found at [https://marginaleffects.com](https://marginaleffects.com/). I have found this website extremely helpful in my own political science research, and hope my website can provide the same coding help that Vincent's has given me. A citation to the `marginaleffects` package appears below.
+
+> Arel-Bundock, Vincent, Noah Greifer, and Andrew Heiss. 2024. “How to Interpret Statistical Models Using marginaleffects for R and Python.” *Journal of Statistical Software* 111(9) 1-32. doi:10.18637/jss.v111.i09 [https://doi.org/10.18637/jss.v111.i09](https://doi.org/10.18637/jss.v111.i09).
+
+

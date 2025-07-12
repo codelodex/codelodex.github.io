@@ -1,0 +1,10 @@
+---
+title: "Data Managment & Cleaning"
+---
+
+# Basic Math
+Math is fun
+```{r}
+1 + 1
+```
+

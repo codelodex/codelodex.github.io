@@ -2,9 +2,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "codelodex.github.io",
+    "title": "Home",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\n1 + 1\n\n[1] 2"
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\n\nowh = \"OWHolmes\"\nldb = \"LDBrandeis\"\nprint(owh)\n\n[1] \"OWHolmes\""
   },
   {
     "objectID": "about.html",
@@ -12,5 +12,92 @@
     "title": "About",
     "section": "",
     "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "r.html",
+    "href": "r.html",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "Basic Math\nMath is fun\n\n1 + 1\n\n[1] 2",
+    "crumbs": [
+      "Home",
+      "R",
+      "Data Managment & Cleaning"
+    ]
+  },
+  {
+    "objectID": "stata.html",
+    "href": "stata.html",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "Math! Math is fun",
+    "crumbs": [
+      "Home",
+      "Stata",
+      "Data Managment & Cleaning"
+    ]
+  },
+  {
+    "objectID": "regex_r.html",
+    "href": "regex_r.html",
+    "title": "Regular Expressions in R",
+    "section": "",
+    "text": "What is a regular expression?"
+  },
+  {
+    "objectID": "dmc_stata.html",
+    "href": "dmc_stata.html",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "Load in a dataset\n\nuse \"filepath/dataset.dta\", clear"
+  },
+  {
+    "objectID": "dmc_r.html",
+    "href": "dmc_r.html",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "Basic Math\nMath is fun\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "r_1_gettingstarted.html",
+    "href": "r_1_gettingstarted.html",
+    "title": "Getting Started",
+    "section": "",
+    "text": "All code examples will the Federalist Papers dataset that can be found in the Data"
+  },
+  {
+    "objectID": "gettingstarted.html",
+    "href": "gettingstarted.html",
+    "title": "Getting Started",
+    "section": "",
+    "text": "For now, all code examples in R and Stata will use a dataset on the Federalist Papers that can be found on this page. This dataset includes a host of different datatypes that can be manipulated to learn different coding techniques and tricks. This dataset is referred to as fp throughout the site.\nThis dataset is a modifed version of the tidy_federalist.RDS dataset I retrieved on June 27, 2025 from Levi Nicklas’ public GitHub Repository that houses data on the Federalist Papers. The modifications I made include organizing variables and observations in a way I found useful, filling in missing data, creating a few useful variables (e.g., duration between publication), and denoting disputed authorship of some papers (see Mosteller and Wallace 1963, 1964). Full code used to transform Nicklas’ original data into the fp dataset appears in the Data Modifications Code section below.\n\nFederalist Papers Data\nA .csv file of the fp dataset can be downloaded here (recommended for R users).\nA .dta file of the fp dataset can be downloaded here (recommended for Stata users).\nBefore each code chunk in the examples throughout this site, users should load in the fp dataset.\nTo load in the .csv file of the fp dataset in R, run the following code:\n\nfp = read.csv(\"/filepath/fp.dta\")\n\nTo load in the .dta file of the fp dataset in Stata, run the following code:\n\nuse \"/filepath/fp.dta\", clear\n\n\n\nData Modifications Code\n\n# dataset downloaded on 6/27/2025 from https://github.com/Levi-Nicklas/FederalistPapers/blob/main/scripts/Collect_and_CleanData.R \n# dataset creator is Levi Nicklas (GitHub username is Levi-Nicklas)\n# Nicklas acquired the text of the Federalist Papers used to create this dataset from Project Gutenberg, so the text is trustworthy\n\n# load in Nicklas' dataset\nfp = readRDS(\"~/Desktop/tidy_federalist.RDS\")\n\n# rename some variables\nnames(fp)[names(fp) == \"paper_num\"] = \"fedId\"\nnames(fp)[names(fp) == \"Author\"] = \"author\"\n\n# now I modify Nicklas' dataset to my liking by changing obs and changing/adding vars\n# since all papers begin with \"To the People of the State of New York\", I extract all text before this to great the baseline for the title var\nfp$title = gsub(\"To the People of the State of New York.*\", \"\", fp$text)\n# next, I remove everything before \"To the People of the State of New York\" to get each essay on its own\nfp$text = gsub(\".*(?=To the People of the State of New York)\", \"\", fp$text, perl = TRUE)\n# now I remove \"To the People of the State of New York\" to get just the text of the essay\n# all except one paper end with a colon, the one ends with a period, so I include two expressions to capture this\nfp$text = sub(\"To the People of the State of New York: |To the People of the State of New York. \", \"\", fp$text)\n\n# since each paper begins with the author name, the new title var will naturally include that name so I have to remove it\nfp$title = gsub(\"HAMILTON|JAY|MADISON|MADISON, with HAMILTON\", \"\", fp$title)\n\n# create a date variable\n# will be useful for duration analysis!\n# remove anything before a day of the week, since all the pubDates start that way\nfp$pubDate = sub(\".*(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) ?\", \"\\\\1\", fp$title)\n# remove the trailing period\nfp$pubDate = sub(\"\\\\.\\\\s*$\", \"\", fp$pubDate)\n# an error in Project Gutenberg!\n# says Fed 26 was published on Saturday, December 22, 1788, but it was actually 1787!\n# same with Fed 30, was actually Friday, December 28, 1787\n# fixing now\nfp$pubDate = ifelse(fp$fedId == 26, \"Saturday, December 22, 1787\", fp$pubDate)\nfp$pubDate = ifelse(fp$fedId == 30, \"Friday, December 28, 1787\", fp$pubDate)\n# get in pubDate data format\nfp$pubDate = as.Date(fp$pubDate, format = \"%A, %B %d, %Y\")\n# calculate some durations\nlibrary(lubridate)\nlibrary(dplyr)\n# days since previous paper\nfp &lt;- fp %&gt;%\n  arrange(pubDate) %&gt;%  # Ensure rows are ordered by date\n  mutate(daysPrevFP = as.numeric(pubDate - lag(pubDate)))\n# replace the one NA at the beginning with 0\nfp$daysPrevFP = ifelse(is.na(fp$daysPrevFP), 0, fp$daysPrevFP)\n# days since the end of the Constitutional Convertion (1787-09-17)\nfp$daysConv = round(difftime(fp$pubDate, \"1787-09-17\"))\n# days since the publication of Cato 1 (1787-09-27)\nfp$daysCato1 = round(difftime(fp$pubDate, \"1787-09-27\"))\n# days since the publication of Brutas 1 (1787-10-18)\nfp$daysBrutus1 = round(difftime(fp$pubDate, \"1787-10-18\"))\n\n# there were only four publications for the papers, so I can just use those to create the var\n# create publication variable\n# seems like the words \"For the\" and \"From the\" and \"From\" appear before each publication, using that to get what I want\nfp$publication = sub(\".*(Daily Advertiser|Independent Journal|New York Packet|McLEAN's Edition, New York).*\", ignore.case = TRUE, \"\\\\1\", fp$title)\n# inconsistency in one publication, appears in original text as \"MCLEAN's\" or \"McLEAN's\" so I standardize to the one the appears more often\nfp$publication = sub(\"MCLEAN's\", \"McLEAN's\", fp$publication)\n\n# now I can finally correct the titles\n# it appears that the name of the publication appears after the words \"For the\" and \"From the\"\n# first I remove all text after the publication name and then after those words\nfp$title = sub(\"(Daily Advertiser|Independent Journal|New York Packet|McLEAN's Edition, New York).*\", \"\", ignore.case = TRUE, fp$title)\n# then I do the fors and froms, making sure I don't mess with Fed. 45 that has it in the middle \nfp$title = ifelse(fp$fedId != 45, sub(\"(For the|From the).*\", \"\", ignore.case = TRUE, fp$title), fp$title)\n# fix Fed. 45\nfp$title = ifelse(fp$fedId == 45, sub(\"Considered For the \", \"\", ignore.case = TRUE, fp$title), fp$title)\n# titles for a few papers end with \"from\" in a leftover to indicate publication, but titles in other papers also contain the word \n# I just remove the word from the titles that end with \"from\"\nfp$title &lt;- ifelse(fp$fedId %in% 78:85, sub(\"from\", \"\", ignore.case = TRUE, fp$title), fp$title)\n# remove the trailing period\nfp$title = sub(\"\\\\.\\\\s*$\", \"\", fp$title)\n\n# have only the first letter of each author's name be capitalized\nfp$author = paste(toupper(substr(fp$author, 1, 1)), tolower(substr(fp$author, 2, nchar(fp$author))), sep=\"\")\n\n# the origianl dataset lists Fed. 18, 19, 20 obs for the author var as \"Multiple\" but I want to be more specific\n# so I fix these obs of because it should be \"Madison, with Hamilton\" according to Project Gutenberg\nfp$author = ifelse(fp$author == \"Multiple\", \"Madison, with Hamilton\", fp$author)\n\n# Project Gutenberg attributes each paper to Hamilton, Jay, Madison, or Madison, with Hamilton\n# several papers have disputed authorship\n# according to Mosteller and  Wallace's 1963 article and 1964 book, Fed. 49-58, and 62-63 are disputed\n# I modify the obs for these papers to reflect this, even though multiple scholars have attributed authorship\nfp$author = ifelse(fp$fedId %in% c(49:58, 62, 63), \"DISPUTED\", fp$author)\n# Fed. 18, 19, and 20 are potentially disputed, but not to the degree that the other noted papers are, so I ignore this possibility for now\n\n# organize the variables\nfp = subset(fp, select = c(fedId, author, title, pubDate, publication, text, daysPrevFP, daysConv, daysCato1, daysBrutus1))\n\n# save the data for R\nwrite.csv(fp, \"~/Desktop/fp.csv\", row.names = F)\n# save the data for Stata\nhaven::write_dta(fp, \"~/Desktop/fp.dta\")\n\n\n\nReferences\n\nMosteller, Frederick and David L. Wallace. 1963. “Inference in an authorship problem: A comparative study of discrimination methods applied to the authorship of the disputed Federalist Papers.” Journal of the American Statistical Association 58(302) 275-309.\n\n\nMosteller, Frederick and David L. Wallace. 1964. Inference and disputed authorship: The Federalist. Addison-Wesley.\n\n\nNicklas, Levi. 2020. “FederalistPapers.” GitHub repository. https://github.com/Levi-Nicklas/FederalistPapers"
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "This site was created in R using Quarto, and open-source software supported by Posit. The theme and style of the website were come from Quarto’s pre-existing themes using their publicly available code that can be found at https://quarto.org.\nThe inspiration for this site was Vincent Arel-Bundock’s wonderful documentation website for the marginaleffects package, which can be found at https://marginaleffects.com. I have found this website extremely helpful in my own political science research, and hope my website can provide the same coding help that Vincent’s has given me. A citation to the marginaleffects package appears below.\n\nArel-Bundock, Vincent, Noah Greifer, and Andrew Heiss. 2024. “How to Interpret Statistical Models Using marginaleffects for R and Python.” Journal of Statistical Software 111(9) 1-32. doi:10.18637/jss.v111.i09 https://doi.org/10.18637/jss.v111.i09."
+  },
+  {
+    "objectID": "r_1_dmc.html",
+    "href": "r_1_dmc.html",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "Basic Math\nMath is fun\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "r_2_regex.html",
+    "href": "r_2_regex.html",
+    "title": "Regular Expressions in R",
+    "section": "",
+    "text": "What is a regular expression?"
+  },
+  {
+    "objectID": "stata_1_dmc.html",
+    "href": "stata_1_dmc.html",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "Load in a dataset\n\nuse \"filepath/dataset.dta\", clear"
   }
 ]
