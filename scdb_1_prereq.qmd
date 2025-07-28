@@ -1,0 +1,41 @@
+---
+title: Prerequisites 
+---
+
+Spaeth et al.'s (2024) Supreme Court Database (hereafter SCDB) provides scholars with a treaure trove of data on the U.S. Supreme Court. Political scientitst studying the Court frequently rely on the SCDB to find a host of information about cases and the justices. Acquring desired information from the SCDB often requires parsing through the database by executing lines of code. In this section, I have included a variety of lines of code that can be used on SCDB to acquire information, create different variables, and more.
+
+Most code uses the Modern Database, which includes cases from the 1946-2023 terms. The code either use the Case Centered Citation data or the Justice Centered Citation data depending on the goal of the code.
+
+To run the code, you need to download the latest version of both SCDB datasets which can be found at the SCDB's website [here](https://scdb.la.psu.edu/data). As of July 13, 2025, the latest data come from Version 2024 Release 01, released on October 1, 2024.
+
+I use the .csv files of both dataset in R and the .dta files in Stata. In R, the Case Centered data object appears as `scdb_cc` and the Justice Centered data object appears as `scdb_jc`.
+
+All data come from Spaeth et al. (2024). If you use this code to work with the SCDB, please properly cite Spaeth et al. (2024):
+
+> Harold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: [https://scdb.psu.edu](https://scdb.psu.edu)
+
+# Loading in the data in R
+
+Case Centered data
+```{r eval = FALSE}
+scdb_cc = read.csv("SCDB_2024_01_caseCentered_Citation.csv")
+```
+Justice Centered data 
+```{r eval = FALSE}
+scdb_jc = read.csv("SCDB_2024_01_justiceCentered_Citation.csv")
+```
+
+# Loading in the data in Stata
+Case Centered data
+```{r eval = FALSE}
+use "SCDB_2024_01_caseCentered_Citation.dta", clear
+```
+Justice Centered data
+```{r eval = FALSE}
+use "SCDB_2024_01_justiceCentered_Citation.dta", clear
+```
+
+
+# References
+
+> Harold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: [https://scdb.psu.edu](https://scdb.psu.edu)

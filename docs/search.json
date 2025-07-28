@@ -84,14 +84,19 @@
     "href": "r_1_dmc.html",
     "title": "Data Managment & Cleaning",
     "section": "",
-    "text": "Basic Math\nMath is fun\n\n1 + 1\n\n[1] 2"
+    "text": "Dataframe Information\n\nThe structure of a dataframe\n\nstr(fp)\n\n'data.frame':   85 obs. of  10 variables:\n $ fedId      : int  1 2 3 4 5 6 7 8 9 10 ...\n $ author     : chr  \"Hamilton\" \"Jay\" \"Jay\" \"Jay\" ...\n $ title      : chr  \"General Introduction \" \"Concerning Dangers from Foreign Force and Influence \" \"The Same Subject Continued (Concerning Dangers From Foreign Force and Influence) \" \"The Same Subject Continued (Concerning Dangers From Foreign Force and Influence) \" ...\n $ pubDate    : chr  \"1787-10-27\" \"1787-10-31\" \"1787-11-03\" \"1787-11-07\" ...\n $ publication: chr  \"Independent Journal\" \"Independent Journal\" \"Independent Journal\" \"Independent Journal\" ...\n $ text       : chr  \"AFTER an unequivocal experience of the inefficacy of the subsisting federal government, you are called upon to \"| __truncated__ \"WHEN the people of America reflect that they are now called upon to decide a question, which, in its consequenc\"| __truncated__ \"IT IS not a new observation that the people of any country (if, like the Americans, intelligent and wellinforme\"| __truncated__ \"MY LAST paper assigned several reasons why the safety of the people would be best secured by union against the \"| __truncated__ ...\n $ daysPrevFP : int  0 4 3 4 3 4 1 5 1 1 ...\n $ daysConv   : int  40 44 47 51 54 58 59 64 65 66 ...\n $ daysCato1  : int  30 34 37 41 44 48 49 54 55 56 ...\n $ daysBrutus1: int  9 13 16 20 23 27 28 33 34 35 ...\n\n\n\n\nA variable’s datatype\n\nclass(fp$author)\n\n[1] \"character\"\n\n\n\n\nRename a variable\n\nnames(fp)[names(fp) == \"text\"] = \"essay\"\n\n\n\nA variable’s column number based on the variable’s name\n\nwhich(colnames(fp) == \"author\")\n\n[1] 2\n\n\n\n\nAll unique values in a variable\n\nunique(fp$author)\n\n[1] \"Hamilton\"               \"Jay\"                    \"Madison\"               \n[4] \"Madison, with Hamilton\" \"DISPUTED\"              \n\n\n\n\nNumber of unique values in a variable\n\nlength(unique(fp$author))\n\n[1] 5\n\n\n\n\nSee if a variable contains a certain observation\nWill return TRUE if the observation appears at least once in the variable and FALSE if it does not appear in the variable\n\nany(fp$author == 'Washington')\n\n[1] FALSE\n\n\n\n\nNumber of times an observation appears in a variable\nWill return a number\n\nlength(fp$author[fp$author == 'Hamilton'])\n\n[1] 51\n\n\n\n\nUnique values for one variable when a different variable meets a certain condition\n\nunique(fp$fedId[fp$author == \"Jay\"])\n\n[1]  2  3  4  5 64\n\n\n\n\n\nDataframe Managment\n\nSort dataframe\nLow to high, by a single variable\n\n# numeric\nnew_fp &lt;- fp[order(fp$fedId), ]\n# character (i.e., alphabetical)\nnew_fp &lt;- fp[order(fp$title), ]\n\nHigh to low, by a single variable\n\n# numeric\nnew_fp &lt;- fp[order(-fp$fedId), ]\n# character (i.e., reverse alphabetical)\nnew_fp &lt;- fp[order(fp$title, decreasing = TRUE), ]\n\nLow to high, by multiple variables\n\nnew_fp &lt;- fp[order(fp$title, fp$author), ]\n\nHigh to low, by multiple variables\n\nnew_fp &lt;- fp[order(fp$author, fp$fedId, decreasing = TRUE), ]\n\n\n\nKeep certain variables in a dataframe\nUsing bracket notation\n\n# one variable\nnew_fp = fp[, \"fedId\", drop = FALSE]\n# multiple variables\nnew_fp = fp[, c(\"fedId\", \"author\", \"pubDate\")]\n\nUsing the subset function\n\n# one variable\nnew_fp = subset(fp, select = fedId)\n# multiple variables\nnew_fp = subset(fp, select = c(fedId, author, pubDate))\n\nUsing the data.frame function\n\n# one variable\nnew_fp = data.frame(\"fedId\" = fp$fedId)\n# multiple variables\nnew_fp = data.frame(\"fedId\" = fp$fedId,\n                    \"author\" = fp$author,\n                    \"pubDate\" = fp$pubDate)\n\nBy specifying a vector of variables\n\n# specify a single unidimensional vector\nkeepThisVar = \"fedId\"\n# specify a multidimensional vector\nkeepTheseVars = c(\"fedId\", \"author\", \"pubDate\")\n\n# using bracket notation\n# one variable\nnew_fp = fp[, keepThisVar, drop = FALSE]\n# multiple variables\nnew_fp = fp[, keepTheseVars]\n\n# using the subset() function\n# one variable\nnew_fp = subset(fp, select = keepThisVar)\n# multiple variables\nnew_fp = subset(fp, select = keepTheseVars)\n\nBy column number\n\n### by column number\n# using bracket notation\n# one variable\nnew_fp = fp[, 1, drop = FALSE]\n# multiple variables\nnew_fp = fp[, c(1, 2, 4)]\n\n\n\nRemove certain variables from a dataframe\nBy setting the variable to NULL\n\nfp$author = NULL\n\nUsing bracket notation\n\n# one variable\nnew_fp = fp[ , !(names(fp) %in% \"fedId\")]\n# multiple variables\nnew_fp = fp[ , !(names(fp) %in% c(\"fedId\", \"author\", \"pubDate\"))]\n\nUsing the subset function\n\n# one variable\nnew_fp = subset(fp, select = -author)\n# multiple variables\nnew_fp = subset(fp, select = -c(fedId, author, pubDate))\n\nBy specifying a vector of variables\n\n# specify a single unidimensional vector\nremoveThisVar = \"fedId\"\n# specify a multidimensional vector\nremoveTheseVars = c(\"fedId\", \"author\", \"pubDate\")\n\n# using bracket notation\n# one variable\nnew_fp = fp[ , !(names(fp) %in% removeThisVar)]\n# multiple variables\nnew_fp = fp[ , !(names(fp) %in% removeTheseVars)]\n\n\n\nRemove all rows when a variable contains a certain value\nUsing bracket notation\n\nnew_fp &lt;- fp[!grepl(\"Jay\", fp$author), ]\n\nUsing the subset function\n\nnew_fp &lt;- subset(fp, !grepl(\"Jay\", author))\n\n\n\nRename observations in a variable based on the same variable\nThis code says that when observations in author are exactly equal to Hamilton, rename observations author to Lin-Manuel Miranda\n\nfp$author[fp$author == 'Hamilton'] &lt;- 'Lin-Manuel Miranda'\n\n\n\nRename observations in a variable based on a different variable\nThis code says, when observations in author are exactly equal to Madison, rename observations publication to Madison Wuz Here\n\nfp$publication[fp$author == 'Madison'] &lt;- 'Madison Wuz Here'\n\n\n\nCheck for NA in a variable\nWill return FALSE if no NA are present; will return TRUE if NA are present\n\nany(is.na(fp$author))\n\n[1] FALSE\n\n\n\n\nRemove all rows that contain NA in a variable\n\nnew_fp &lt;- subset(fp, !is.na(author))\n\n\n\n\nGlobal Environment Managment\n\nRemove all objects from the Global Environment\n\nrm(list = ls())\n\n\n\nSave one object from the Global Environment\n\nrm(list = setdiff(ls(), \"fp\"))\n\n\n\nSave multiple objects from the Global Environment\n\nrm(list = setdiff(ls(), c(\"fp\", \"obj2\", \"obj3\")))"
   },
   {
     "objectID": "r_2_regex.html",
     "href": "r_2_regex.html",
     "title": "Regular Expressions in R",
     "section": "",
-    "text": "What is a regular expression?"
+    "text": "What is a regular expression?",
+    "crumbs": [
+      "Home",
+      "R",
+      "Regular Expressions in R"
+    ]
   },
   {
     "objectID": "stata_1_dmc.html",
@@ -99,5 +104,50 @@
     "title": "Data Managment & Cleaning",
     "section": "",
     "text": "Load in a dataset\n\nuse \"filepath/dataset.dta\", clear"
+  },
+  {
+    "objectID": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-from-an-old-dataframe",
+    "href": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-from-an-old-dataframe",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "# a few options that all do the same thing\n\n# using bracket notation\nnew_fp = fp[, \"author\", drop = FALSE] \n\n# using the subset() function\nnew_fp = subset(fp, select = author)",
+    "crumbs": [
+      "Home",
+      "R",
+      "Data Managment & Cleaning"
+    ]
+  },
+  {
+    "objectID": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-an-existing-dataframe",
+    "href": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-an-existing-dataframe",
+    "title": "Data Managment & Cleaning",
+    "section": "",
+    "text": "# a few options that all do the same thing\n\n# using bracket notation\nnew_fp = fp[, \"author\", drop = FALSE] \n\n# using the subset() function\nnew_fp = subset(fp, select = author)",
+    "crumbs": [
+      "Home",
+      "R",
+      "Data Managment & Cleaning"
+    ]
+  },
+  {
+    "objectID": "scdb_r.html",
+    "href": "scdb_r.html",
+    "title": "R",
+    "section": "",
+    "text": "This page contains R code to work with the Supreme Court Database\n\nscdb = read.csv()"
+  },
+  {
+    "objectID": "scdb_2_r.html",
+    "href": "scdb_2_r.html",
+    "title": "R Code",
+    "section": "",
+    "text": "Attaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\nCreate a justiceLastName variable based on the justiceName variable\n\nscdb_jc$justiceLastName &lt;- sub(\".*?([A-Z][a-z]+)[0-9]*$\", \"\\\\1\", scdb_jc$justiceName)\n\nCreate a table to compare the justiceName variable to the justiceLastName variable\n\nprint(unique(scdb_jc[, c(\"justiceName\", \"justiceLastName\")]), row.names = FALSE)\n\n  justiceName justiceLastName\n     HHBurton          Burton\n    RHJackson         Jackson\n    WODouglas         Douglas\n FFrankfurter     Frankfurter\n       SFReed            Reed\n      HLBlack           Black\n   WBRutledge        Rutledge\n      FMurphy          Murphy\n     FMVinson          Vinson\n      TCClark           Clark\n      SMinton          Minton\n      EWarren          Warren\n     JHarlan2          Harlan\n    WJBrennan         Brennan\n  CEWhittaker       Whittaker\n     PStewart         Stewart\n      BRWhite           White\n   AJGoldberg        Goldberg\n      AFortas          Fortas\n    TMarshall        Marshall\n     WEBurger          Burger\n   HABlackmun        Blackmun\n     LFPowell          Powell\n  WHRehnquist       Rehnquist\n    JPStevens         Stevens\n    SDOConnor          Connor\n      AScalia          Scalia\n    AMKennedy         Kennedy\n     DHSouter          Souter\n      CThomas          Thomas\n   RBGinsburg        Ginsburg\n     SGBreyer          Breyer\n    JGRoberts         Roberts\n      SAAlito           Alito\n   SSotomayor       Sotomayor\n       EKagan           Kagan\n    NMGorsuch         Gorsuch\n  BMKavanaugh       Kavanaugh\n    ACBarrett         Barrett\n    KBJackson         Jackson\n\n\n\n\nNumber of decisions per term\n\n# library(dplyr)\nscdb_cc %&gt;%\ngroup_by(term) %&gt;%\nsummarize(totalDecisions = length(unique(caseId))) %&gt;%\nhead(10)\n\n# A tibble: 10 × 2\n    term totalDecisions\n   &lt;int&gt;          &lt;int&gt;\n 1  1946            142\n 2  1947            118\n 3  1948            127\n 4  1949            100\n 5  1950            103\n 6  1951            100\n 7  1952            122\n 8  1953             87\n 9  1954             98\n10  1955            106\n\n\n\n\nReferences\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu"
+  },
+  {
+    "objectID": "scdb_1_prereq.html",
+    "href": "scdb_1_prereq.html",
+    "title": "Prerequisites",
+    "section": "",
+    "text": "Spaeth et al.’s (2024) Supreme Court Database (hereafter SCDB) provides scholars with a treaure trove of data on the U.S. Supreme Court. Political scientitst studying the Court frequently rely on the SCDB to find a host of information about cases and the justices. Acquring desired information from the SCDB often requires parsing through the database by executing lines of code. In this section, I have included a variety of lines of code that can be used on SCDB to acquire information, create different variables, and more.\nMost code uses the Modern Database, which includes cases from the 1946-2023 terms. The code either use the Case Centered Citation data or the Justice Centered Citation data depending on the goal of the code.\nTo run the code, you need to download the latest version of both SCDB datasets which can be found at the SCDB’s website here. As of July 13, 2025, the latest data come from Version 2024 Release 01, released on October 1, 2024.\nI use the .csv files of both dataset in R and the .dta files in Stata. In R, the Case Centered data object appears as scdb_cc and the Justice Centered data object appears as scdb_jc.\nAll data come from Spaeth et al (2024). If you use this code to work with the SCDB, please properly cite Spaeth et al (2024):\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu\n\n\nLoading in the data in R\nCase Centered data\n\nscdb_cc = read.csv(\"SCDB_2024_01_caseCentered_Citation.csv\")\n\nJustice Centered data\n\nscdb_jc = read.csv(\"SCDB_2024_01_justiceCentered_Citation.csv\")\n\n\n\nLoading in the data in Stata\nCase Centered data\n\nuse \"SCDB_2024_01_caseCentered_Citation.dta\", clear\n\nJustice Centered data\n\nuse \"SCDB_2024_01_justiceCentered_Citation.dta\", clear\n\n\n\nReferences\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu"
   }
 ]

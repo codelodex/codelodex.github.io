@@ -5,7 +5,7 @@ resources:
   - "fp.dta"
 ---
 
-For now, all code examples in R and Stata will use a dataset on the Federalist Papers that can be found on this page. This dataset includes a host of different datatypes that can be manipulated to learn different coding techniques and tricks. This dataset is referred to as `fp` throughout the site.
+For now, all code examples in R and Stata will use a dataset on the Federalist Papers that can be found on this page. This dataset includes a host of different datatypes that can be manipulated to learn different coding techniques and tricks. This dataset is referred to as `fp` throughout the site, and appears as the `fp` object in the R code.
 
 This dataset is a modifed version of the `tidy_federalist.RDS` dataset I retrieved on June 27, 2025 from [Levi Nicklas'](https://github.com/Levi-Nicklas) public [GitHub Repository](https://github.com/Levi-Nicklas/FederalistPapers) that houses data on the Federalist Papers. The modifications I made include organizing variables and observations in a way I found useful, filling in missing data, creating a few useful variables (e.g., duration between publication), and denoting disputed authorship of some papers (see Mosteller and  Wallace 1963, 1964). Full code used to transform Nicklas' original data into the `fp` dataset appears in the **Data Modifications Code** section below.
 

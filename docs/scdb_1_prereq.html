@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Codelodex - Home</title>
+<title>Codelodex - Prerequisites</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -137,7 +137,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Home</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./scdb_1_prereq.html">Supreme Court Database</a></li><li class="breadcrumb-item"><a href="./scdb_1_prereq.html">Prerequisites</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -151,7 +151,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
@@ -203,16 +203,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
  <span class="menu-text">Supreme Court Database</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./scdb_1_prereq.html" class="sidebar-item-text sidebar-link">
+  <a href="./scdb_1_prereq.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Prerequisites</span></a>
   </div>
 </li>
@@ -230,14 +230,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#loading-in-the-data-in-r" id="toc-loading-in-the-data-in-r" class="nav-link active" data-scroll-target="#loading-in-the-data-in-r">Loading in the data in R</a></li>
+  <li><a href="#loading-in-the-data-in-stata" id="toc-loading-in-the-data-in-stata" class="nav-link" data-scroll-target="#loading-in-the-data-in-stata">Loading in the data in Stata</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Home</h1>
+<h1 class="title">Prerequisites</h1>
 </div>
 
 
@@ -252,18 +260,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<p>Spaeth et al.’s (2024) Supreme Court Database (hereafter SCDB) provides scholars with a treaure trove of data on the U.S. Supreme Court. Political scientitst studying the Court frequently rely on the SCDB to find a host of information about cases and the justices. Acquring desired information from the SCDB often requires parsing through the database by executing lines of code. In this section, I have included a variety of lines of code that can be used on SCDB to acquire information, create different variables, and more.</p>
+<p>Most code uses the Modern Database, which includes cases from the 1946-2023 terms. The code either use the Case Centered Citation data or the Justice Centered Citation data depending on the goal of the code.</p>
+<p>To run the code, you need to download the latest version of both SCDB datasets which can be found at the SCDB’s website <a href="https://scdb.la.psu.edu/data">here</a>. As of July 13, 2025, the latest data come from Version 2024 Release 01, released on October 1, 2024.</p>
+<p>I use the .csv files of both dataset in R and the .dta files in Stata. In R, the Case Centered data object appears as <code>scdb_cc</code> and the Justice Centered data object appears as <code>scdb_jc</code>.</p>
+<p>All data come from Spaeth et al (2024). If you use this code to work with the SCDB, please properly cite Spaeth et al (2024):</p>
+<blockquote class="blockquote">
+<p>Harold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: <a href="https://scdb.psu.edu">https://scdb.psu.edu</a></p>
+</blockquote>
+<section id="loading-in-the-data-in-r" class="level1">
+<h1>Loading in the data in R</h1>
+<p>Case Centered data</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>owh <span class="ot">=</span> <span class="st">"OWHolmes"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ldb <span class="ot">=</span> <span class="st">"LDBrandeis"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(owh)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "OWHolmes"</code></pre>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>scdb_cc <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"SCDB_2024_01_caseCentered_Citation.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Justice Centered data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>scdb_jc <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"SCDB_2024_01_justiceCentered_Citation.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="loading-in-the-data-in-stata" class="level1">
+<h1>Loading in the data in Stata</h1>
+<p>Case Centered data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>use <span class="st">"SCDB_2024_01_caseCentered_Citation.dta"</span>, clear</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Justice Centered data</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>use <span class="st">"SCDB_2024_01_justiceCentered_Citation.dta"</span>, clear</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="references" class="level1">
+<h1>References</h1>
+<blockquote class="blockquote">
+<p>Harold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: <a href="https://scdb.psu.edu">https://scdb.psu.edu</a></p>
+</blockquote>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

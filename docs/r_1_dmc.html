@@ -201,6 +201,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Supreme Court Database</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scdb_1_prereq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prerequisites</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scdb_2_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -211,7 +234,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#basic-math" id="toc-basic-math" class="nav-link active" data-scroll-target="#basic-math">Basic Math</a></li>
+  <li><a href="#dataframe-information" id="toc-dataframe-information" class="nav-link active" data-scroll-target="#dataframe-information">Dataframe Information</a>
+  <ul class="collapse">
+  <li><a href="#the-structure-of-a-dataframe" id="toc-the-structure-of-a-dataframe" class="nav-link" data-scroll-target="#the-structure-of-a-dataframe">The structure of a dataframe</a></li>
+  <li><a href="#a-variables-datatype" id="toc-a-variables-datatype" class="nav-link" data-scroll-target="#a-variables-datatype">A variable’s datatype</a></li>
+  <li><a href="#rename-a-variable" id="toc-rename-a-variable" class="nav-link" data-scroll-target="#rename-a-variable">Rename a variable</a></li>
+  <li><a href="#a-variables-column-number-based-on-the-variables-name" id="toc-a-variables-column-number-based-on-the-variables-name" class="nav-link" data-scroll-target="#a-variables-column-number-based-on-the-variables-name">A variable’s column number based on the variable’s name</a></li>
+  <li><a href="#all-unique-values-in-a-variable" id="toc-all-unique-values-in-a-variable" class="nav-link" data-scroll-target="#all-unique-values-in-a-variable">All unique values in a variable</a></li>
+  <li><a href="#number-of-unique-values-in-a-variable" id="toc-number-of-unique-values-in-a-variable" class="nav-link" data-scroll-target="#number-of-unique-values-in-a-variable">Number of unique values in a variable</a></li>
+  <li><a href="#see-if-a-variable-contains-a-certain-observation" id="toc-see-if-a-variable-contains-a-certain-observation" class="nav-link" data-scroll-target="#see-if-a-variable-contains-a-certain-observation">See if a variable contains a certain observation</a></li>
+  <li><a href="#number-of-times-an-observation-appears-in-a-variable" id="toc-number-of-times-an-observation-appears-in-a-variable" class="nav-link" data-scroll-target="#number-of-times-an-observation-appears-in-a-variable">Number of times an observation appears in a variable</a></li>
+  <li><a href="#unique-values-for-one-variable-when-a-different-variable-meets-a-certain-condition" id="toc-unique-values-for-one-variable-when-a-different-variable-meets-a-certain-condition" class="nav-link" data-scroll-target="#unique-values-for-one-variable-when-a-different-variable-meets-a-certain-condition">Unique values for one variable when a different variable meets a certain condition</a></li>
+  </ul></li>
+  <li><a href="#dataframe-managment" id="toc-dataframe-managment" class="nav-link" data-scroll-target="#dataframe-managment">Dataframe Managment</a>
+  <ul class="collapse">
+  <li><a href="#sort-dataframe" id="toc-sort-dataframe" class="nav-link" data-scroll-target="#sort-dataframe">Sort dataframe</a></li>
+  <li><a href="#keep-certain-variables-in-a-dataframe" id="toc-keep-certain-variables-in-a-dataframe" class="nav-link" data-scroll-target="#keep-certain-variables-in-a-dataframe">Keep certain variables in a dataframe</a></li>
+  <li><a href="#remove-certain-variables-from-a-dataframe" id="toc-remove-certain-variables-from-a-dataframe" class="nav-link" data-scroll-target="#remove-certain-variables-from-a-dataframe">Remove certain variables from a dataframe</a></li>
+  <li><a href="#remove-all-rows-when-a-variable-contains-a-certain-value" id="toc-remove-all-rows-when-a-variable-contains-a-certain-value" class="nav-link" data-scroll-target="#remove-all-rows-when-a-variable-contains-a-certain-value">Remove all rows when a variable contains a certain value</a></li>
+  <li><a href="#rename-observations-in-a-variable-based-on-the-same-variable" id="toc-rename-observations-in-a-variable-based-on-the-same-variable" class="nav-link" data-scroll-target="#rename-observations-in-a-variable-based-on-the-same-variable">Rename observations in a variable based on the same variable</a></li>
+  <li><a href="#rename-observations-in-a-variable-based-on-a-different-variable" id="toc-rename-observations-in-a-variable-based-on-a-different-variable" class="nav-link" data-scroll-target="#rename-observations-in-a-variable-based-on-a-different-variable">Rename observations in a variable based on a different variable</a></li>
+  <li><a href="#check-for-na-in-a-variable" id="toc-check-for-na-in-a-variable" class="nav-link" data-scroll-target="#check-for-na-in-a-variable">Check for NA in a variable</a></li>
+  <li><a href="#remove-all-rows-that-contain-na-in-a-variable" id="toc-remove-all-rows-that-contain-na-in-a-variable" class="nav-link" data-scroll-target="#remove-all-rows-that-contain-na-in-a-variable">Remove all rows that contain NA in a variable</a></li>
+  </ul></li>
+  <li><a href="#global-environment-managment" id="toc-global-environment-managment" class="nav-link" data-scroll-target="#global-environment-managment">Global Environment Managment</a>
+  <ul class="collapse">
+  <li><a href="#remove-all-objects-from-the-global-environment" id="toc-remove-all-objects-from-the-global-environment" class="nav-link" data-scroll-target="#remove-all-objects-from-the-global-environment">Remove all objects from the Global Environment</a></li>
+  <li><a href="#save-one-object-from-the-global-environment" id="toc-save-one-object-from-the-global-environment" class="nav-link" data-scroll-target="#save-one-object-from-the-global-environment">Save one object from the Global Environment</a></li>
+  <li><a href="#save-multiple-objects-from-the-global-environment" id="toc-save-multiple-objects-from-the-global-environment" class="nav-link" data-scroll-target="#save-multiple-objects-from-the-global-environment">Save multiple objects from the Global Environment</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -235,17 +286,279 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="basic-math" class="level1">
-<h1>Basic Math</h1>
-<p>Math is fun</p>
+<section id="dataframe-information" class="level1">
+<h1>Dataframe Information</h1>
+<section id="the-structure-of-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="the-structure-of-a-dataframe">The structure of a dataframe</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(fp)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   85 obs. of  10 variables:
+ $ fedId      : int  1 2 3 4 5 6 7 8 9 10 ...
+ $ author     : chr  "Hamilton" "Jay" "Jay" "Jay" ...
+ $ title      : chr  "General Introduction " "Concerning Dangers from Foreign Force and Influence " "The Same Subject Continued (Concerning Dangers From Foreign Force and Influence) " "The Same Subject Continued (Concerning Dangers From Foreign Force and Influence) " ...
+ $ pubDate    : chr  "1787-10-27" "1787-10-31" "1787-11-03" "1787-11-07" ...
+ $ publication: chr  "Independent Journal" "Independent Journal" "Independent Journal" "Independent Journal" ...
+ $ text       : chr  "AFTER an unequivocal experience of the inefficacy of the subsisting federal government, you are called upon to "| __truncated__ "WHEN the people of America reflect that they are now called upon to decide a question, which, in its consequenc"| __truncated__ "IT IS not a new observation that the people of any country (if, like the Americans, intelligent and wellinforme"| __truncated__ "MY LAST paper assigned several reasons why the safety of the people would be best secured by union against the "| __truncated__ ...
+ $ daysPrevFP : int  0 4 3 4 3 4 1 5 1 1 ...
+ $ daysConv   : int  40 44 47 51 54 58 59 64 65 66 ...
+ $ daysCato1  : int  30 34 37 41 44 48 49 54 55 56 ...
+ $ daysBrutus1: int  9 13 16 20 23 27 28 33 34 35 ...</code></pre>
+</div>
+</div>
+</section>
+<section id="a-variables-datatype" class="level3">
+<h3 class="anchored" data-anchor-id="a-variables-datatype">A variable’s datatype</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(fp<span class="sc">$</span>author)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</section>
+<section id="rename-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="rename-a-variable">Rename a variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(fp)[<span class="fu">names</span>(fp) <span class="sc">==</span> <span class="st">"text"</span>] <span class="ot">=</span> <span class="st">"essay"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="a-variables-column-number-based-on-the-variables-name" class="level3">
+<h3 class="anchored" data-anchor-id="a-variables-column-number-based-on-the-variables-name">A variable’s column number based on the variable’s name</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(<span class="fu">colnames</span>(fp) <span class="sc">==</span> <span class="st">"author"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
+</section>
+<section id="all-unique-values-in-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="all-unique-values-in-a-variable">All unique values in a variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(fp<span class="sc">$</span>author)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Hamilton"               "Jay"                    "Madison"               
+[4] "Madison, with Hamilton" "DISPUTED"              </code></pre>
+</div>
+</div>
+</section>
+<section id="number-of-unique-values-in-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="number-of-unique-values-in-a-variable">Number of unique values in a variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">unique</span>(fp<span class="sc">$</span>author))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+</section>
+<section id="see-if-a-variable-contains-a-certain-observation" class="level3">
+<h3 class="anchored" data-anchor-id="see-if-a-variable-contains-a-certain-observation">See if a variable contains a certain observation</h3>
+<p>Will return <code>TRUE</code> if the observation appears at least once in the variable and <code>FALSE</code> if it does not appear in the variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(fp<span class="sc">$</span>author <span class="sc">==</span> <span class="st">'Washington'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="number-of-times-an-observation-appears-in-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="number-of-times-an-observation-appears-in-a-variable">Number of times an observation appears in a variable</h3>
+<p>Will return a number</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(fp<span class="sc">$</span>author[fp<span class="sc">$</span>author <span class="sc">==</span> <span class="st">'Hamilton'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 51</code></pre>
+</div>
+</div>
+</section>
+<section id="unique-values-for-one-variable-when-a-different-variable-meets-a-certain-condition" class="level3">
+<h3 class="anchored" data-anchor-id="unique-values-for-one-variable-when-a-different-variable-meets-a-certain-condition">Unique values for one variable when a different variable meets a certain condition</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(fp<span class="sc">$</span>fedId[fp<span class="sc">$</span>author <span class="sc">==</span> <span class="st">"Jay"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2  3  4  5 64</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="dataframe-managment" class="level1">
+<h1>Dataframe Managment</h1>
+<section id="sort-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="sort-dataframe">Sort dataframe</h3>
+<p>Low to high, by a single variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> fp[<span class="fu">order</span>(fp<span class="sc">$</span>fedId), ]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co"># character (i.e., alphabetical)</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> fp[<span class="fu">order</span>(fp<span class="sc">$</span>title), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>High to low, by a single variable</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numeric</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> fp[<span class="fu">order</span>(<span class="sc">-</span>fp<span class="sc">$</span>fedId), ]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># character (i.e., reverse alphabetical)</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> fp[<span class="fu">order</span>(fp<span class="sc">$</span>title, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Low to high, by multiple variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> fp[<span class="fu">order</span>(fp<span class="sc">$</span>title, fp<span class="sc">$</span>author), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>High to low, by multiple variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> fp[<span class="fu">order</span>(fp<span class="sc">$</span>author, fp<span class="sc">$</span>fedId, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="keep-certain-variables-in-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="keep-certain-variables-in-a-dataframe">Keep certain variables in a dataframe</h3>
+<p>Using bracket notation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[, <span class="st">"fedId"</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[, <span class="fu">c</span>(<span class="st">"fedId"</span>, <span class="st">"author"</span>, <span class="st">"pubDate"</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>subset</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">subset</span>(fp, <span class="at">select =</span> fedId)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">subset</span>(fp, <span class="at">select =</span> <span class="fu">c</span>(fedId, author, pubDate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>data.frame</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">"fedId"</span> <span class="ot">=</span> fp<span class="sc">$</span>fedId)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">data.frame</span>(<span class="st">"fedId"</span> <span class="ot">=</span> fp<span class="sc">$</span>fedId,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"author"</span> <span class="ot">=</span> fp<span class="sc">$</span>author,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"pubDate"</span> <span class="ot">=</span> fp<span class="sc">$</span>pubDate)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>By specifying a vector of variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a single unidimensional vector</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>keepThisVar <span class="ot">=</span> <span class="st">"fedId"</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a multidimensional vector</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>keepTheseVars <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"fedId"</span>, <span class="st">"author"</span>, <span class="st">"pubDate"</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># using bracket notation</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[, keepThisVar, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[, keepTheseVars]</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># using the subset() function</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">subset</span>(fp, <span class="at">select =</span> keepThisVar)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">subset</span>(fp, <span class="at">select =</span> keepTheseVars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>By column number</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="do">### by column number</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># using bracket notation</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[, <span class="dv">1</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[, <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">4</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="remove-certain-variables-from-a-dataframe" class="level3">
+<h3 class="anchored" data-anchor-id="remove-certain-variables-from-a-dataframe">Remove certain variables from a dataframe</h3>
+<p>By setting the variable to NULL</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>fp<span class="sc">$</span>author <span class="ot">=</span> <span class="cn">NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using bracket notation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[ , <span class="sc">!</span>(<span class="fu">names</span>(fp) <span class="sc">%in%</span> <span class="st">"fedId"</span>)]</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[ , <span class="sc">!</span>(<span class="fu">names</span>(fp) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"fedId"</span>, <span class="st">"author"</span>, <span class="st">"pubDate"</span>))]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>subset</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">subset</span>(fp, <span class="at">select =</span> <span class="sc">-</span>author)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> <span class="fu">subset</span>(fp, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(fedId, author, pubDate))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>By specifying a vector of variables</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a single unidimensional vector</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>removeThisVar <span class="ot">=</span> <span class="st">"fedId"</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># specify a multidimensional vector</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>removeTheseVars <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"fedId"</span>, <span class="st">"author"</span>, <span class="st">"pubDate"</span>)</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co"># using bracket notation</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># one variable</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[ , <span class="sc">!</span>(<span class="fu">names</span>(fp) <span class="sc">%in%</span> removeThisVar)]</span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># multiple variables</span></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">=</span> fp[ , <span class="sc">!</span>(<span class="fu">names</span>(fp) <span class="sc">%in%</span> removeTheseVars)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="remove-all-rows-when-a-variable-contains-a-certain-value" class="level3">
+<h3 class="anchored" data-anchor-id="remove-all-rows-when-a-variable-contains-a-certain-value">Remove all rows when a variable contains a certain value</h3>
+<p>Using bracket notation</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> fp[<span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Jay"</span>, fp<span class="sc">$</span>author), ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>subset</code> function</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> <span class="fu">subset</span>(fp, <span class="sc">!</span><span class="fu">grepl</span>(<span class="st">"Jay"</span>, author))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rename-observations-in-a-variable-based-on-the-same-variable" class="level3">
+<h3 class="anchored" data-anchor-id="rename-observations-in-a-variable-based-on-the-same-variable">Rename observations in a variable based on the same variable</h3>
+<p>This code says that when observations in <code>author</code> are exactly equal to <code>Hamilton</code>, rename observations <code>author</code> to <code>Lin-Manuel Miranda</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>fp<span class="sc">$</span>author[fp<span class="sc">$</span>author <span class="sc">==</span> <span class="st">'Hamilton'</span>] <span class="ot">&lt;-</span> <span class="st">'Lin-Manuel Miranda'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="rename-observations-in-a-variable-based-on-a-different-variable" class="level3">
+<h3 class="anchored" data-anchor-id="rename-observations-in-a-variable-based-on-a-different-variable">Rename observations in a variable based on a different variable</h3>
+<p>This code says, when observations in <code>author</code> are exactly equal to <code>Madison</code>, rename observations <code>publication</code> to <code>Madison Wuz Here</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fp<span class="sc">$</span>publication[fp<span class="sc">$</span>author <span class="sc">==</span> <span class="st">'Madison'</span>] <span class="ot">&lt;-</span> <span class="st">'Madison Wuz Here'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="check-for-na-in-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="check-for-na-in-a-variable">Check for NA in a variable</h3>
+<p>Will return <code>FALSE</code> if no NA are present; will return <code>TRUE</code> if NA are present</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span>(<span class="fu">is.na</span>(fp<span class="sc">$</span>author))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="remove-all-rows-that-contain-na-in-a-variable" class="level3">
+<h3 class="anchored" data-anchor-id="remove-all-rows-that-contain-na-in-a-variable">Remove all rows that contain NA in a variable</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>new_fp <span class="ot">&lt;-</span> <span class="fu">subset</span>(fp, <span class="sc">!</span><span class="fu">is.na</span>(author))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="global-environment-managment" class="level1">
+<h1>Global Environment Managment</h1>
+<section id="remove-all-objects-from-the-global-environment" class="level3">
+<h3 class="anchored" data-anchor-id="remove-all-objects-from-the-global-environment">Remove all objects from the Global Environment</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="save-one-object-from-the-global-environment" class="level3">
+<h3 class="anchored" data-anchor-id="save-one-object-from-the-global-environment">Save one object from the Global Environment</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), <span class="st">"fp"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="save-multiple-objects-from-the-global-environment" class="level3">
+<h3 class="anchored" data-anchor-id="save-multiple-objects-from-the-global-environment">Save multiple objects from the Global Environment</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">setdiff</span>(<span class="fu">ls</span>(), <span class="fu">c</span>(<span class="st">"fp"</span>, <span class="st">"obj2"</span>, <span class="st">"obj3"</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

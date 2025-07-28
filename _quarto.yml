@@ -22,7 +22,11 @@ website:
           - href: r_2_regex.qmd
       - section: "Stata"
         contents:
-          - href: stata_1_dmc.qmd # Data Managment & Cleaning 
+          - href: stata_1_dmc.qmd # Data Managment & Cleaning
+      - section: "Supreme Court Database"
+        contents:
+          - href: scdb_1_prereq.qmd # SCDB R code
+          - href: scdb_2_r.qmd # SCDB R code
 
 
 format:
