@@ -4,6 +4,6 @@ title: ""
 
 ![](codelodex_full-blank.png)
 
-Welcome to Codelodex! This website is a work in progress and will be updated frequently. Please feel free to click around to see what I have sett up so far. Check back soon for a proper welcome page.
+Welcome to Codelodex! This website is a work in progress and will be updated frequently. Please feel free to click around to see what I have set up so far. Check back soon for a proper welcome page.
 
 -MTC
