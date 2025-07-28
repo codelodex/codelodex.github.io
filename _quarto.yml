@@ -4,17 +4,20 @@ project:
 
 website:
   title: Codelodex
+  favicon: codelodex_logo.png
   navbar:
     search: false
     right:
       - href: index.qmd
+        text: "Home"
       - href: about.qmd
       - href: references.qmd
   sidebar:
     style: "floating"
     collapse-level: 1
     contents:
-      - href: index.qmd 
+      - href: index.qmd
+        text: "Home"
       - href: gettingstarted.qmd
       - section: "R"
         contents:

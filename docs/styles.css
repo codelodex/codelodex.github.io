@@ -14,3 +14,6 @@ h6 code {color: black !important;}
 /* make the cursor the pointer when hovering */
 .sidebar a,
 .sidebar .nav-link {cursor: pointer;}
+
+/* change the top navbar background color */
+.navbar {background-color: #ffffff !important;}
