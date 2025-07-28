@@ -201,6 +201,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
       </ul>
   </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false">
+ <span class="menu-text">Supreme Court Database</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scdb_1_prereq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prerequisites</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./scdb_2_r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Code</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
     </ul>
     </div>
 </nav>
@@ -237,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>For now, all code examples in R and Stata will use a dataset on the Federalist Papers that can be found on this page. This dataset includes a host of different datatypes that can be manipulated to learn different coding techniques and tricks. This dataset is referred to as <code>fp</code> throughout the site.</p>
+<p>For now, all code examples in R and Stata will use a dataset on the Federalist Papers that can be found on this page. This dataset includes a host of different datatypes that can be manipulated to learn different coding techniques and tricks. This dataset is referred to as <code>fp</code> throughout the site, and appears as the <code>fp</code> object in the R code.</p>
 <p>This dataset is a modifed version of the <code>tidy_federalist.RDS</code> dataset I retrieved on June 27, 2025 from <a href="https://github.com/Levi-Nicklas">Levi Nicklas’</a> public <a href="https://github.com/Levi-Nicklas/FederalistPapers">GitHub Repository</a> that houses data on the Federalist Papers. The modifications I made include organizing variables and observations in a way I found useful, filling in missing data, creating a few useful variables (e.g., duration between publication), and denoting disputed authorship of some papers (see Mosteller and Wallace 1963, 1964). Full code used to transform Nicklas’ original data into the <code>fp</code> dataset appears in the <strong>Data Modifications Code</strong> section below.</p>
 <section id="federalist-papers-data" class="level1">
 <h1>Federalist Papers Data</h1>

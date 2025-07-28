@@ -18,16 +18,15 @@ website:
       - href: gettingstarted.qmd
       - section: "R"
         contents:
-          - href: r_1_dmc.qmd # Data Managment & Cleaning 
+          - href: r_1_dmc.qmd
           - href: r_2_regex.qmd
       - section: "Stata"
         contents:
-          - href: stata_1_dmc.qmd # Data Managment & Cleaning
+          - href: stata_1_dmc.qmd
       - section: "Supreme Court Database"
         contents:
-          - href: scdb_1_prereq.qmd # SCDB R code
-          - href: scdb_2_r.qmd # SCDB R code
-
+          - href: scdb_1_prereq.qmd
+          - href: scdb_2_r.qmd
 
 format:
   html:

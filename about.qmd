@@ -2,8 +2,4 @@
 title: "About"
 ---
 
-About this site
-
-```{r}
-1 + 1
-```
+This cite was created my Matthew (Matt) T. Cota. Matt is a PhD Student in Political Science at Michigan State University studying the U.S. Supreme Court. For more information, please visit my website: [https://matthewtcota.com](https://matthewtcota.com).

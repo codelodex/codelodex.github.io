@@ -2,12 +2,10 @@
 title: "Home"
 ---
 
-This is a Quarto website.
+Welcome to Codelodex! 
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+This website is a work in progress and will be updated frequently. 
 
-```{r}
-owh = "OWHolmes"
-ldb = "LDBrandeis"
-print(owh)
-```
+Please feel free to click around to see what I have sett up so far. Check back soon for a proper welcome page.
+
+-MTC
