@@ -1,9 +1,0 @@
----
-title: "Data Managment & Cleaning"
----
-
-### Load in a dataset
-
-```{r eval = FALSE}
-use "filepath/dataset.dta", clear
-```
