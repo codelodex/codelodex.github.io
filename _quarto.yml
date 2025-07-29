@@ -1,35 +1,35 @@
 project:
   type: website
-  output-dir: docs
 
 website:
   title: Codelodex
-  favicon: codelodex_logo.png
+  
   navbar:
     search: false
     right:
-      - href: index.qmd
-        text: "Home"
-      - href: about.qmd
-      - href: references.qmd
+      - text: "Home"
+        file: index.qmd
+      - file: about.qmd
+      - file: references.qmd
+      
   sidebar:
-    style: "floating"
     collapse-level: 1
     contents:
-      - href: index.qmd
-        text: "Home"
-      - href: gettingstarted.qmd
+      - text: "Home"
+        file: index.qmd
+      - file: gettingstarted.qmd
       - section: "R"
         contents:
-          - href: r_1_dmc.qmd
-          - href: r_2_regex.qmd
+          - file: r_1_dmc.qmd
+            text: "Home"
+          - file: r_2_regex.qmd
       - section: "Stata"
         contents:
-          - href: stata_1_dmc.qmd
+          - file: stata_1_dmc.qmd
       - section: "Supreme Court Database"
         contents:
-          - href: scdb_1_prereq.qmd
-          - href: scdb_2_r.qmd
+          - file: scdb_1_prereq.qmd
+          - file: scdb_2_r.qmd
 
 format:
   html:

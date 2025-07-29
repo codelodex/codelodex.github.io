@@ -14,58 +14,6 @@
     "text": "This cite was created my Matthew (Matt) T. Cota. Matt is a PhD Student in Political Science at Michigan State University studying the U.S. Supreme Court. For more information, please visit my website: https://matthewtcota.com. For information on how I named this site and created its logo, see the definitions below and watch the movie Pulp Fiction.\n\ncode /kōd/ n.\n1. a system of words, letters, figures, or other symbols substituted for other words, letters, etc., especially for the purposes of secrecy.\n2. program instructions.\nrolodex /ˈrōləˌdeks/ n.\na desktop card index used to record names, addresses, and telephone numbers, in the form of a rotating spindle or a small tray to which removable cards are attached.\n\nOxford Languages"
   },
   {
-    "objectID": "r.html",
-    "href": "r.html",
-    "title": "Data Managment & Cleaning",
-    "section": "",
-    "text": "Basic Math\nMath is fun\n\n1 + 1\n\n[1] 2",
-    "crumbs": [
-      "Home",
-      "R",
-      "Data Managment & Cleaning"
-    ]
-  },
-  {
-    "objectID": "stata.html",
-    "href": "stata.html",
-    "title": "Data Managment & Cleaning",
-    "section": "",
-    "text": "Math! Math is fun",
-    "crumbs": [
-      "Home",
-      "Stata",
-      "Data Managment & Cleaning"
-    ]
-  },
-  {
-    "objectID": "regex_r.html",
-    "href": "regex_r.html",
-    "title": "Regular Expressions in R",
-    "section": "",
-    "text": "What is a regular expression?"
-  },
-  {
-    "objectID": "dmc_stata.html",
-    "href": "dmc_stata.html",
-    "title": "Data Managment & Cleaning",
-    "section": "",
-    "text": "Load in a dataset\n\nuse \"filepath/dataset.dta\", clear"
-  },
-  {
-    "objectID": "dmc_r.html",
-    "href": "dmc_r.html",
-    "title": "Data Managment & Cleaning",
-    "section": "",
-    "text": "Basic Math\nMath is fun\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "r_1_gettingstarted.html",
-    "href": "r_1_gettingstarted.html",
-    "title": "Getting Started",
-    "section": "",
-    "text": "All code examples will the Federalist Papers dataset that can be found in the Data"
-  },
-  {
     "objectID": "gettingstarted.html",
     "href": "gettingstarted.html",
     "title": "Getting Started",
@@ -94,42 +42,11 @@
     "text": "What is a regular expression?"
   },
   {
-    "objectID": "stata_1_dmc.html",
-    "href": "stata_1_dmc.html",
-    "title": "Data Managment & Cleaning",
+    "objectID": "scdb_1_prereq.html",
+    "href": "scdb_1_prereq.html",
+    "title": "Prerequisites",
     "section": "",
-    "text": "Load in a dataset\n\nuse \"filepath/dataset.dta\", clear"
-  },
-  {
-    "objectID": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-from-an-old-dataframe",
-    "href": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-from-an-old-dataframe",
-    "title": "Data Managment & Cleaning",
-    "section": "",
-    "text": "# a few options that all do the same thing\n\n# using bracket notation\nnew_fp = fp[, \"author\", drop = FALSE] \n\n# using the subset() function\nnew_fp = subset(fp, select = author)",
-    "crumbs": [
-      "Home",
-      "R",
-      "Data Managment & Cleaning"
-    ]
-  },
-  {
-    "objectID": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-an-existing-dataframe",
-    "href": "r_1_dmc.html#make-a-new-univariate-or-multivariate-dataframe-using-an-existing-dataframe",
-    "title": "Data Managment & Cleaning",
-    "section": "",
-    "text": "# a few options that all do the same thing\n\n# using bracket notation\nnew_fp = fp[, \"author\", drop = FALSE] \n\n# using the subset() function\nnew_fp = subset(fp, select = author)",
-    "crumbs": [
-      "Home",
-      "R",
-      "Data Managment & Cleaning"
-    ]
-  },
-  {
-    "objectID": "scdb_r.html",
-    "href": "scdb_r.html",
-    "title": "R",
-    "section": "",
-    "text": "This page contains R code to work with the Supreme Court Database\n\nscdb = read.csv()"
+    "text": "Spaeth et al.’s (2024) Supreme Court Database (hereafter SCDB) provides scholars with a treaure trove of data on the U.S. Supreme Court. Political scientitst studying the Court frequently rely on the SCDB to find a host of information about cases and the justices. Acquring desired information from the SCDB often requires parsing through the database by executing lines of code. In this section, I have included a variety of lines of code that can be used on SCDB to acquire information, create different variables, and more.\nMost code uses the Modern Database, which includes cases from the 1946-2023 terms. The code either use the Case Centered Citation data or the Justice Centered Citation data depending on the goal of the code.\nTo run the code, you need to download the latest version of both SCDB datasets which can be found at the SCDB’s website here. As of July 13, 2025, the latest data come from Version 2024 Release 01, released on October 1, 2024.\nI use the .csv files of both dataset in R and the .dta files in Stata. In R, the Case Centered data object appears as scdb_cc and the Justice Centered data object appears as scdb_jc.\nAll data come from Spaeth et al. (2024). If you use this code to work with the SCDB, please properly cite Spaeth et al. (2024):\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu\n\n\nLoading in the data in R\nCase Centered data\n\nscdb_cc = read.csv(\"SCDB_2024_01_caseCentered_Citation.csv\")\n\nJustice Centered data\n\nscdb_jc = read.csv(\"SCDB_2024_01_justiceCentered_Citation.csv\")\n\n\n\nLoading in the data in Stata\nCase Centered data\n\nuse \"SCDB_2024_01_caseCentered_Citation.dta\", clear\n\nJustice Centered data\n\nuse \"SCDB_2024_01_justiceCentered_Citation.dta\", clear\n\n\n\nReferences\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu"
   },
   {
     "objectID": "scdb_2_r.html",
@@ -139,11 +56,11 @@
     "text": "Attaching package: 'dplyr'\n\n\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n\n\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n\n\n\nCreate a justiceLastName variable based on the justiceName variable\n\nscdb_jc$justiceLastName &lt;- sub(\".*?([A-Z][a-z]+)[0-9]*$\", \"\\\\1\", scdb_jc$justiceName)\n\nCreate a table to compare the justiceName variable to the justiceLastName variable\n\nprint(unique(scdb_jc[, c(\"justiceName\", \"justiceLastName\")]), row.names = FALSE)\n\n  justiceName justiceLastName\n     HHBurton          Burton\n    RHJackson         Jackson\n    WODouglas         Douglas\n FFrankfurter     Frankfurter\n       SFReed            Reed\n      HLBlack           Black\n   WBRutledge        Rutledge\n      FMurphy          Murphy\n     FMVinson          Vinson\n      TCClark           Clark\n      SMinton          Minton\n      EWarren          Warren\n     JHarlan2          Harlan\n    WJBrennan         Brennan\n  CEWhittaker       Whittaker\n     PStewart         Stewart\n      BRWhite           White\n   AJGoldberg        Goldberg\n      AFortas          Fortas\n    TMarshall        Marshall\n     WEBurger          Burger\n   HABlackmun        Blackmun\n     LFPowell          Powell\n  WHRehnquist       Rehnquist\n    JPStevens         Stevens\n    SDOConnor          Connor\n      AScalia          Scalia\n    AMKennedy         Kennedy\n     DHSouter          Souter\n      CThomas          Thomas\n   RBGinsburg        Ginsburg\n     SGBreyer          Breyer\n    JGRoberts         Roberts\n      SAAlito           Alito\n   SSotomayor       Sotomayor\n       EKagan           Kagan\n    NMGorsuch         Gorsuch\n  BMKavanaugh       Kavanaugh\n    ACBarrett         Barrett\n    KBJackson         Jackson\n\n\n\n\nNumber of decisions per term\n\n# library(dplyr)\nscdb_cc %&gt;%\ngroup_by(term) %&gt;%\nsummarize(totalDecisions = length(unique(caseId))) %&gt;%\nhead(10)\n\n# A tibble: 10 × 2\n    term totalDecisions\n   &lt;int&gt;          &lt;int&gt;\n 1  1946            142\n 2  1947            118\n 3  1948            127\n 4  1949            100\n 5  1950            103\n 6  1951            100\n 7  1952            122\n 8  1953             87\n 9  1954             98\n10  1955            106\n\n\n\n\nReferences\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu"
   },
   {
-    "objectID": "scdb_1_prereq.html",
-    "href": "scdb_1_prereq.html",
-    "title": "Prerequisites",
+    "objectID": "stata_1_dmc.html",
+    "href": "stata_1_dmc.html",
+    "title": "Data Managment & Cleaning",
     "section": "",
-    "text": "Spaeth et al.’s (2024) Supreme Court Database (hereafter SCDB) provides scholars with a treaure trove of data on the U.S. Supreme Court. Political scientitst studying the Court frequently rely on the SCDB to find a host of information about cases and the justices. Acquring desired information from the SCDB often requires parsing through the database by executing lines of code. In this section, I have included a variety of lines of code that can be used on SCDB to acquire information, create different variables, and more.\nMost code uses the Modern Database, which includes cases from the 1946-2023 terms. The code either use the Case Centered Citation data or the Justice Centered Citation data depending on the goal of the code.\nTo run the code, you need to download the latest version of both SCDB datasets which can be found at the SCDB’s website here. As of July 13, 2025, the latest data come from Version 2024 Release 01, released on October 1, 2024.\nI use the .csv files of both dataset in R and the .dta files in Stata. In R, the Case Centered data object appears as scdb_cc and the Justice Centered data object appears as scdb_jc.\nAll data come from Spaeth et al. (2024). If you use this code to work with the SCDB, please properly cite Spaeth et al. (2024):\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu\n\n\nLoading in the data in R\nCase Centered data\n\nscdb_cc = read.csv(\"SCDB_2024_01_caseCentered_Citation.csv\")\n\nJustice Centered data\n\nscdb_jc = read.csv(\"SCDB_2024_01_justiceCentered_Citation.csv\")\n\n\n\nLoading in the data in Stata\nCase Centered data\n\nuse \"SCDB_2024_01_caseCentered_Citation.dta\", clear\n\nJustice Centered data\n\nuse \"SCDB_2024_01_justiceCentered_Citation.dta\", clear\n\n\n\nReferences\n\nHarold J. Spaeth, Lee Epstein, Michael J. Nelson, Andrew D. Martin, Jeffrey A. Segal, Theodore J. Ruger, and Sara C. Benesh. 2024. Supreme Court Database, Version 2024 Release 01. URL: https://scdb.psu.edu"
+    "text": "Load in a dataset\n\nuse \"filepath/dataset.dta\", clear"
   },
   {
     "objectID": "stata_1_dmc.knit.html",
