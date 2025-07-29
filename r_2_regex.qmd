@@ -1,5 +1,0 @@
----
-title: "Regular Expressions in R"
----
-
-# What is a regular expression?
