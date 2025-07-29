@@ -1,0 +1,139 @@
+---
+title: "Getting Started"
+resources:
+  - "fp.csv"
+  - "fp.dta"
+---
+
+For now, all code examples in R and Stata will use a dataset on the Federalist Papers that can be found on this page. This dataset includes a host of different datatypes that can be manipulated to learn different coding techniques and tricks. This dataset is referred to as `fp` throughout the site, and appears as the `fp` object in the R code.
+
+This dataset is a modifed version of the `tidy_federalist.RDS` dataset I retrieved on June 27, 2025 from [Levi Nicklas'](https://github.com/Levi-Nicklas) public [GitHub Repository](https://github.com/Levi-Nicklas/FederalistPapers) that houses data on the Federalist Papers. The modifications I made include organizing variables and observations in a way I found useful, filling in missing data, creating a few useful variables (e.g., duration between publication), and denoting disputed authorship of some papers (see Mosteller and  Wallace 1963, 1964). Full code used to transform Nicklas' original data into the `fp` dataset appears in the **Data Modifications Code** section below.
+
+# Federalist Papers Data
+
+A .csv file of the `fp` dataset can be downloaded [here](fp.csv){target="_blank" download="fp.csv"} (recommended for R users).
+
+A .dta file of the `fp` dataset can be downloaded [here](fp.dta){target="_blank" download="fp.dta"} (recommended for Stata users).
+
+Before each code chunk in the examples throughout this site, users should load in the `fp` dataset. 
+
+To load in the .csv file of the `fp` dataset in R, run the following code:
+```{r eval = FALSE}
+fp = read.csv("/filepath/fp.dta")
+```
+
+
+To load in the .dta file of the `fp` dataset in Stata, run the following code:
+```{r eval = FALSE}
+use "/filepath/fp.dta", clear
+```
+
+
+# Data Modifications Code
+```{r eval = FALSE}
+
+# dataset downloaded on 6/27/2025 from https://github.com/Levi-Nicklas/FederalistPapers/blob/main/scripts/Collect_and_CleanData.R 
+# dataset creator is Levi Nicklas (GitHub username is Levi-Nicklas)
+# Nicklas acquired the text of the Federalist Papers used to create this dataset from Project Gutenberg, so the text is trustworthy
+
+# load in Nicklas' dataset
+fp = readRDS("~/Desktop/tidy_federalist.RDS")
+
+# rename some variables
+names(fp)[names(fp) == "paper_num"] = "fedId"
+names(fp)[names(fp) == "Author"] = "author"
+
+# now I modify Nicklas' dataset to my liking by changing obs and changing/adding vars
+# since all papers begin with "To the People of the State of New York", I extract all text before this to great the baseline for the title var
+fp$title = gsub("To the People of the State of New York.*", "", fp$text)
+# next, I remove everything before "To the People of the State of New York" to get each essay on its own
+fp$text = gsub(".*(?=To the People of the State of New York)", "", fp$text, perl = TRUE)
+# now I remove "To the People of the State of New York" to get just the text of the essay
+# all except one paper end with a colon, the one ends with a period, so I include two expressions to capture this
+fp$text = sub("To the People of the State of New York: |To the People of the State of New York. ", "", fp$text)
+
+# since each paper begins with the author name, the new title var will naturally include that name so I have to remove it
+fp$title = gsub("HAMILTON|JAY|MADISON|MADISON, with HAMILTON", "", fp$title)
+
+# create a date variable
+# will be useful for duration analysis!
+# remove anything before a day of the week, since all the pubDates start that way
+fp$pubDate = sub(".*(Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday) ?", "\\1", fp$title)
+# remove the trailing period
+fp$pubDate = sub("\\.\\s*$", "", fp$pubDate)
+# an error in Project Gutenberg!
+# says Fed 26 was published on Saturday, December 22, 1788, but it was actually 1787!
+# same with Fed 30, was actually Friday, December 28, 1787
+# fixing now
+fp$pubDate = ifelse(fp$fedId == 26, "Saturday, December 22, 1787", fp$pubDate)
+fp$pubDate = ifelse(fp$fedId == 30, "Friday, December 28, 1787", fp$pubDate)
+# get in pubDate data format
+fp$pubDate = as.Date(fp$pubDate, format = "%A, %B %d, %Y")
+# calculate some durations
+library(lubridate)
+library(dplyr)
+# days since previous paper
+fp <- fp %>%
+  arrange(pubDate) %>%  # Ensure rows are ordered by date
+  mutate(daysPrevFP = as.numeric(pubDate - lag(pubDate)))
+# replace the one NA at the beginning with 0
+fp$daysPrevFP = ifelse(is.na(fp$daysPrevFP), 0, fp$daysPrevFP)
+# days since the end of the Constitutional Convertion (1787-09-17)
+fp$daysConv = round(difftime(fp$pubDate, "1787-09-17"))
+# days since the publication of Cato 1 (1787-09-27)
+fp$daysCato1 = round(difftime(fp$pubDate, "1787-09-27"))
+# days since the publication of Brutas 1 (1787-10-18)
+fp$daysBrutus1 = round(difftime(fp$pubDate, "1787-10-18"))
+
+# there were only four publications for the papers, so I can just use those to create the var
+# create publication variable
+# seems like the words "For the" and "From the" and "From" appear before each publication, using that to get what I want
+fp$publication = sub(".*(Daily Advertiser|Independent Journal|New York Packet|McLEAN's Edition, New York).*", ignore.case = TRUE, "\\1", fp$title)
+# inconsistency in one publication, appears in original text as "MCLEAN's" or "McLEAN's" so I standardize to the one the appears more often
+fp$publication = sub("MCLEAN's", "McLEAN's", fp$publication)
+
+# now I can finally correct the titles
+# it appears that the name of the publication appears after the words "For the" and "From the"
+# first I remove all text after the publication name and then after those words
+fp$title = sub("(Daily Advertiser|Independent Journal|New York Packet|McLEAN's Edition, New York).*", "", ignore.case = TRUE, fp$title)
+# then I do the fors and froms, making sure I don't mess with Fed. 45 that has it in the middle 
+fp$title = ifelse(fp$fedId != 45, sub("(For the|From the).*", "", ignore.case = TRUE, fp$title), fp$title)
+# fix Fed. 45
+fp$title = ifelse(fp$fedId == 45, sub("Considered For the ", "", ignore.case = TRUE, fp$title), fp$title)
+# titles for a few papers end with "from" in a leftover to indicate publication, but titles in other papers also contain the word 
+# I just remove the word from the titles that end with "from"
+fp$title <- ifelse(fp$fedId %in% 78:85, sub("from", "", ignore.case = TRUE, fp$title), fp$title)
+# remove the trailing period
+fp$title = sub("\\.\\s*$", "", fp$title)
+
+# have only the first letter of each author's name be capitalized
+fp$author = paste(toupper(substr(fp$author, 1, 1)), tolower(substr(fp$author, 2, nchar(fp$author))), sep="")
+
+# the origianl dataset lists Fed. 18, 19, 20 obs for the author var as "Multiple" but I want to be more specific
+# so I fix these obs of because it should be "Madison, with Hamilton" according to Project Gutenberg
+fp$author = ifelse(fp$author == "Multiple", "Madison, with Hamilton", fp$author)
+
+# Project Gutenberg attributes each paper to Hamilton, Jay, Madison, or Madison, with Hamilton
+# several papers have disputed authorship
+# according to Mosteller and  Wallace's 1963 article and 1964 book, Fed. 49-58, and 62-63 are disputed
+# I modify the obs for these papers to reflect this, even though multiple scholars have attributed authorship
+fp$author = ifelse(fp$fedId %in% c(49:58, 62, 63), "DISPUTED", fp$author)
+# Fed. 18, 19, and 20 are potentially disputed, but not to the degree that the other noted papers are, so I ignore this possibility for now
+
+# organize the variables
+fp = subset(fp, select = c(fedId, author, title, pubDate, publication, text, daysPrevFP, daysConv, daysCato1, daysBrutus1))
+
+# save the data for R
+write.csv(fp, "~/Desktop/fp.csv", row.names = F)
+# save the data for Stata
+haven::write_dta(fp, "~/Desktop/fp.dta")
+```
+
+
+# References
+
+> Mosteller, Frederick and David L. Wallace. 1963. "Inference in an authorship problem: A comparative study of discrimination methods applied to the authorship of the disputed Federalist Papers." *Journal of the American Statistical Association* 58(302) 275-309.
+
+> Mosteller, Frederick and David L. Wallace. 1964. *Inference and disputed authorship: The Federalist.* Addison-Wesley.
+
+> Nicklas, Levi. 2020. "FederalistPapers." GitHub repository. [https://github.com/Levi-Nicklas/FederalistPapers](https://github.com/Levi-Nicklas/FederalistPapers)

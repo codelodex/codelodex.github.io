@@ -1,0 +1,22 @@
+/* css styles */
+
+/* change the top navbar background color */
+.navbar {background-color: #ffffff !important;}
+
+/* make the cursor the pointer when hovering */
+.sidebar a, .sidebar .nav-link {cursor: pointer;}
+
+
+/* OPTIONAL STYLISTIC Settings 
+# make text surrounded by ` ` in Markdown main text black 
+
+p code {color: black !important;} 
+
+# make text surrounded by ` ` in Markdown headers black 
+
+h1 code,
+h2 code,
+h3 code,
+h4 code,
+h5 code,
+h6 code {color: black !important;} */

@@ -1,0 +1,40 @@
+project:
+  type: website
+
+website:
+  title: Codelodex
+  favicon: logo.png
+  
+  navbar:
+    right:
+      - href: index.qmd
+        text: Home
+      - about.qmd
+      - references.qmd
+  
+  sidebar:
+    collapse-level: 1
+    contents:
+        - href: index.qmd
+          text: Home
+        - gettingstarted.qmd
+        - section: R
+          contents:
+            - r_1_dmc.qmd
+            - r_2_regex.qmd
+        - section: Stata
+          contents:
+            - stata_1_dmc.qmd
+        - section: Supreme Court Database
+          contents:
+            - scdb_1_prereq.qmd
+            - scdb_2_r.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+
